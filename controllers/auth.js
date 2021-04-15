@@ -86,15 +86,15 @@ const loginUser = async (req, res = response) => {
   });
 };
 
-const revalidateToken = (req, res = response) => {
-  const { name, email, password } = req.body;
+const revalidateToken = async (req, res = response) => {
+  const { uid, name } = req;
+
+  //new token
+  const token = await generateJWT(uid, name);
 
   res.status(200).json({
     ok: true,
-    msg: "Validation",
-    name,
-    email,
-    password,
+    token,
   });
 };
 

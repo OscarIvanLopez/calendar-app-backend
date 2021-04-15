@@ -15,9 +15,11 @@ const {
   revalidateToken,
 } = require("../controllers/auth");
 
+const { jwtValidator } = require("../middlewares/jwt-validator");
+
 router.post(
   "/new",
-     [
+  [
     // Middlewares
     check("name", "El nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").not().isEmpty(),
@@ -44,9 +46,6 @@ router.post(
   loginUser
 );
 
-router.get(
-  "/renew",
-  revalidateToken
-);
+router.get("/renew", jwtValidator, revalidateToken);
 
 module.exports = router;
