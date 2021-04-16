@@ -1,11 +1,10 @@
 /*
-    User Routes / Auth
-    host + /api/auth
-*/
-
+ *   User Routes / Auth
+ *    /api/auth
+ */
 const { Router } = require("express");
-const { check } = require("express-validator");
 const router = Router();
+const { check } = require("express-validator");
 const { validateFields } = require("../middlewares/fields-validator");
 
 // Auth functions imports

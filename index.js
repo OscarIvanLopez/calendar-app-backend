@@ -1,23 +1,29 @@
 const express = require("express");
 const { dbConnection } = require("./database/config");
 require("dotenv").config();
-
+const cors = require("cors");
 //! Create the express server
 const app = express();
 
 // ! Data base path
 dbConnection();
 
+//!CORS
+app.use(cors());
+
 //! public directory
 app.use(express.static("public"));
 
-// Reading and parce of body
+//! Reading and parce of body
 app.use(express.json());
 
-// Routes
-// TODO: auth // create, login, renewal
+//! Routes START
+// * auth // create, login, renewal
 app.use("/api/auth", require("./routes/auth"));
-// TODO CRUD: events
+
+// * events
+app.use("/api/events", require("./routes/events"));
+// ! Routes END
 
 //! Listening request
 app.listen(process.env.PORT, () => {
