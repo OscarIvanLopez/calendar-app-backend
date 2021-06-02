@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //! Routes START
-// * auth // create, login, renewal
+// * auth // create, login, renew
 app.use("/api/auth", require("./routes/auth"));
 
 // * events
